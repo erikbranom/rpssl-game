@@ -1,13 +1,5 @@
-"""
-After
-@ Clever Programmer
-Rock paper scissors
-"""
 import random
 
-# Global variables that all functions know about.
-# DO NOT EDIT THESE GLOBAL VARIABLES
-# OR YOUR GAME WILL BREAK.
 COMPUTER_SCORE = 0
 HUMAN_SCORE = 0
 human_choice = ""
@@ -15,67 +7,34 @@ computer_choice = ""
 
 
 def choice_to_number(choice):
-    """Convert choice to number."""
-
-    # TODO: Implement
-    # NOTE
-    # A dictionary-based solution (see Clever Programmer tutorial and assignment README) will be preferred.
-    # Evaluation will be as follows:
-    # 1. Dictionary-based solution: 100%
-    # 2. Chain-of-if-statements solution: 80%
-
-    raise NotImplementedError
+    return{'rock': 0, 'paper': 1, 'scissors': 2, 'spock': 3, 'lizard': 4}[choice]
 
 
 def number_to_choice(number):
-    """Convert number to choice."""
-
-    # TODO: Implement
-    # NOTE
-    # A dictionary-based solution (see Clever Programmer tutorial and assignment README) will be preferred.
-    # Evaluation will be as follows:
-    # 1. Dictionary-based solution: 100%
-    # 2. Chain-of-if-statements solution: 80%
-
-    raise NotImplementedError
+    return{0: 'rock', 1: 'paper', 2: 'scissors', 3: 'spock', 4: 'lizard'}[number]
 
 
 def random_computer_choice():
-    """Choose randomly for computer."""
-
-    # TODO: Implement (Hint: Look up random.choice())
-
-    raise NotImplementedError
+    return{'rock', 'paper', 'scissors', 'spock', 'lizard'}
 
 
 def choice_result(human_move, computer_move):
-    """Return the result of who wins.
-    :param human_move: A string representing a move. One of
-                         {'rock', 'paper', 'scissors', 'spock', 'lizard'}.
-    :param computer_move: A string representing a move.
-    :returns None. Modifies globals. Prints out result of last game.
-    """
 
-    # DO NOT REMOVE THESE GLOBAL VARIABLE LINES.
     global COMPUTER_SCORE
     global HUMAN_SCORE
 
-    # TODO: Implement
-    # Based on the given human_choice and computer_choice,
-    # determine who won and increment their score by 1.
-    # In case of tie, don't increment anyone's score.
-
-    # NOTE
-    # A modulo-based solution (see Clever Programmer tutorial and assignment README) will be preferred.
-    # Evaluation will be as follows:
-    # 1. Modulo-based solution: 100%
-    # 2. Chain-of-if-statements solution: 80%
-
-    raise NotImplementedError
+    human_choice_number = choice_to_number(human_move)
+    computer_choice_number = choice_to_number(computer_move)
+    if (computer_choice_number - human_choice_number) % 5 == [1, 3]:
+        print("Human Wins!")
+        HUMAN_SCORE += 1
+    elif (human_choice_number - computer_choice_number) % 5 == {2, 4}:
+        print("Computer wins!")
+        COMPUTER_SCORE += 1
+    elif computer_choice_number == human_choice_number:
+        print("Uh oh, its a tie")
 
 
-# DO NOT REMOVE THESE TEST FUNCTIONS.
-# They will test your code.
 def test_choice_to_number():
     assert choice_to_number('rock') == 0
     assert choice_to_number('paper') == 1
@@ -104,8 +63,6 @@ def test_all():
     test_computer_choice()
 
 
-# Code for handling human player moves
-# DO NOT EDIT THESE FUNCTIONS
 def rock():
     global human_choice, computer_choice
     global HUMAN_SCORE, COMPUTER_SCORE
@@ -151,8 +108,6 @@ def lizard():
     choice_result(human_choice, computer_choice)
 
 
-# Game play functions
-# DO NOT EDIT THESE FUNCTIONS
 def greet():
     print('Welcome to the game of RPSSL')
     print('Commands: (r)ock\n' +
@@ -197,9 +152,6 @@ def play_rps():
             print('Score: Human {} : Computer {}'.format(HUMAN_SCORE, COMPUTER_SCORE))
 
 
-# main function
 if __name__ == '__main__':
-    # Uncomment to test your functions.
-    # test_all()
 
     play_rps()
